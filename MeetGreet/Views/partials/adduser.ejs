@@ -1,0 +1,38 @@
+
+  <center>
+  <br>
+  <div style=" background-color:white;width:550px;height:700px;box-shadow:0 10px 10px rgba(0,0,0,0.6)">
+  <h1>Add User</h1>
+  <input type="text" required="" name="fullname" id="fullname" class="form-control" placeholder="Name" autocomplete="false"
+   style="font-size:20px;width:500px;border-radius:5px;"><br/>
+  <br>
+  <input type="email" required="" name="username" class="form-control" id="email"
+  placeholder="Email" autocomplete="off" autocorrect="off" style="font-size:20px;width:500px;border-radius:5px;" ><br/>
+  <br>
+  <input type="password" required="" name="password" class="form-control" id="password"
+  placeholder="User Password" autocomplete="new-password" autocorrect="off" style="font-size:20px;width:500px;border-radius:5px;"><br/>
+  <br>
+  <input type="text" required="" name="phone" class="form-control" maxlength="10" id="phone" placeholder="Phone Number" autocomplete="off"
+	style="font-size:20px;width:500px;border-radius:5px;"><br/>
+  <br>
+  <input type="text" required="" name="dob" id="dob" class="form-control" placeholder="Date Of Birth" autocomplete="false"
+   style="font-size:20px;width:500px;border-radius:5px;"><br/>
+  <br>
+  <input type="text" required="" name="city" id="city" class="form-control" placeholder="City" autocomplete="false"
+	 style="font-size:20px;width:500px;border-radius:5px;"><br/>
+  <br>
+  <label id="label"><b>Role:</b></label><br>
+  <select data-style="btn-info" id="select" name="roleoptions" class="form-control"style="font-size:20px;width:500px;border-radius:5px;">
+                    <optgroup label="Select User Role">
+                      <option value="User">User</option>
+                      <option value="Commuity Builder">Community Builder</option>
+                      <option value="Admin">Admin</option>
+                    </optgroup>
+                </select>
+              <br><br><br>
+  <input type="submit" value="Add User" class="btn btn-success" style="background-color:green;color:white;height:40px" id="btn">
+  <a value="Cancel" class="btn btn-danger" href="templating" > Cancel  </a>
+</center>
+</div>
+<script src="adduser.js">
+</script>
