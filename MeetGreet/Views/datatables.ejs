@@ -1,0 +1,681 @@
+<html style = "font-family: Arial">
+<head>
+<title>MeetGreet</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
+<style>
+body
+{
+	margin: 0;
+	padding: 0;
+	line-height: 1.42857143;
+	background-color: #F1F1F1;
+}
+.fa-times-circle
+{
+	padding: 5px 10px;
+	background-color: #f0ad4e;
+	margin-right: 6px;
+	color : white;
+	cursor: pointer;
+	border: 0px;
+}
+.fa-envelope
+{
+	padding: 5px 10px;
+	background-color: black;
+	font-size : ;
+	margin-right: 6px;
+	color : white;
+	cursor: pointer;
+	border: 0px;
+}
+.fa-edit
+{
+	font-size: -1px;
+	padding: 5px 10px;
+	background-color:#337ab7;
+	margin-right: 6px;
+	color : white;
+	cursor: pointer;
+	border: 0px;
+}
+.fa-check-circle
+{
+	font-size: -1px;
+	padding: 5px 10px;
+	background-color: #5cb85c;
+  margin-right: 5px;
+	color : white;
+	cursor: pointer;
+	border: 0px;
+}
+#userdivbig
+{
+	margin-right : -195px;
+	width : 50px;
+	float : right;
+}
+#userdivbig1
+{
+	margin-right : -347px;
+	width : 0px;
+	float : right;
+}
+#status1
+{
+	color: white;
+    height: 42px;
+    width: 194px;
+    background-color: #2D312C;
+		box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    font-size: 17px;
+		border-radius: 5px;
+    padding-inline-start: 17px;
+}
+#status
+{
+	color: white;
+    height: 42px;
+    width: 168px;
+    background-color: #2D312C;
+		box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    font-size: 17px;
+		border-radius: 5px;
+    padding-inline-start: 17px;
+}
+#example_wrapper
+{
+margin-top: 16px;
+}
+#biguldiv
+{
+margin-top: 7px;
+width: 1000px;
+height: 44px;
+margin-left: 4px;
+}
+#refreshbtn
+{
+	box-shadow: 0 0 10px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+	-o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+	border-radius: 5px;
+	height: 45px;
+	padding: 6px 17px;
+	font-size: 17px;
+	line-height: 1.42857143;
+	margin-right : 150px;
+}
+#uldiv
+{
+	background-color: #2D312C;
+color: white;
+width: 85px;
+box-shadow: 0 0 10px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+border-radius: 5px;
+height: 34px;
+padding: 6px 17px;
+font-size: 19px;
+line-height: 1.42857143;
+float: left;
+}
+#div1
+{
+	position: fixed;
+	width : 1337px;
+	z-index : 100;
+}
+.d1{
+	overflow: visible;
+	background-color: #222D3C;
+	height: 60px;
+	width: auto;
+	display: block;
+    padding: 0px 15px;
+}
+.d1 a{
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding-left: 20px;
+	padding-right: 50px;
+	text-decoration: none;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+.d1 span{
+	color: white;
+}
+.d1 div{
+	box-sizing: border-box;
+}
+.d2{
+	height: 100%;
+	width: 50px;;
+	position: fixed;
+	z-index: 1;
+	top: 60px;
+	left: 0;
+	background-color: #000000;
+	overflow-x: hidden;
+	transition: 0.5s;
+}
+
+.d2 a{
+	display: block;
+	padding: 11px 4px 11px 15px;
+	text-decoration: none;
+	color: #999999;
+	transition: 0.1s;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 15px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.fa{
+	font-size: 21px;
+	padding-right: 10px;
+}
+.d2 a:hover{
+	color : #fff;
+	background-color: #111;
+	border-left : 2px solid;
+	border-left-color: red;
+}
+.active{
+	background-color: #337AB7;
+}
+.d2 img{
+	width: 60px;
+	height: 60px;
+}
+#act{
+	color: white;
+}
+.sadmin{
+	float: right;
+	padding: .2em .6em .3em;
+	font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+	border-radius: 4px;
+}
+.mainpage{
+	padding-top : 62px;
+	padding-left : 55px;
+}
+img{
+	cursor: pointer;
+    width: 40px;
+    margin-left: 30px;
+    margin-right: 10px;
+	margin-top: 10px;
+    float: right;
+    border-radius: 50%;
+}
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%;
+	height : 112px;
+}
+ /* The Close Button */
+.close {
+ /* padding-left: 617px; */
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus
+{
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+#btndiv
+{
+ width : 223px;
+}
+
+#yesbtn
+{
+ width : 96px;
+ height: 45px;
+ float : left;
+ background-color: #222D3C; /* Green */
+ border: none;
+ color: white;
+ padding: 10px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ margin: 4px 2px;
+ -webkit-transition-duration: 0.4s; /* Safari */
+ transition-duration: 0.4s;
+ cursor: pointer;
+ background-color: white;
+ color: black;
+ border: 2px solid #222D3C;
+}
+#yesbtn:hover
+{
+	background-color: #222D3C;
+	color: white;
+}
+#nobtn
+{
+ width : 96px;
+ height : 45px;
+ float : right;
+ background-color: #222D3C; /* Green */
+ border: none;
+ color: white;
+ padding: 10px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ margin: 4px 2px;
+ -webkit-transition-duration: 0.4s; /* Safari */
+ transition-duration: 0.4s;
+ cursor: pointer;
+ background-color: white;
+ color: black;
+ border: 2px solid #222D3C;
+}
+#nobtn:hover
+{
+	background-color: #222D3C;
+	color: white;
+}
+.syesbtn
+{
+ width : 96px;
+ height: 45px;
+ float : left;
+ background-color: #222D3C; /* Green */
+ border: none;
+ color: #5CB85C;
+ padding: 10px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ margin: 4px 2px;
+ -webkit-transition-duration: 0.4s; /* Safari */
+ transition-duration: 0.4s;
+ background-color: white;
+ cursor: pointer;
+ color: black;
+ border: 2px solid #5CB85C;
+}
+.syesbtn:hover
+{
+	background-color: #5CB85C;
+	color: white;
+}
+.snobtn
+{
+ width : 96px;
+ height : 45px;
+ float : right;
+ background-color: #222D3C; /* Green */
+ border: none;
+ color: white;
+ padding: 10px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ margin: 4px 2px;
+ -webkit-transition-duration: 0.4s; /* Safari */
+ transition-duration: 0.4s;
+ cursor: pointer;
+ background-color: white;
+ color: black;
+ border: 2px solid #D9534F;
+}
+.snobtn:hover
+{
+	background-color: #D9534F;
+	color: white;
+}
+
+.close2 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close2:hover,
+.close2:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+#mainpage{
+  /* padding-top : 0px; */
+ padding-left : 254px;
+}
+#activatemodal
+{
+	display : none;
+}
+
+
+.update {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+
+  left:350px;
+  width:750px; /* Full width */
+  height: 750px; /* Full heigt */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: white /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  z-index: 100000;
+}
+.mail {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+
+  left:350px;
+  width:750px; /* Full width */
+  height: 750px; /* Full heigt */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: white /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  z-index: 100000000;
+}
+.close {
+  position: absolute;
+  left:650px;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+
+
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+
+.modal-content1 {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  z-index: 100000;
+}
+
+.container
+{
+	z-index: 100;
+	background-color: white;
+}
+
+</style>
+</head>
+<body>
+<div id="div1" class="d1">
+<br>
+<a href="#">MeetGreet</a>
+<span style="cursor:pointer;" onclick="funcNav()">&#9776;</span>
+
+<span class="sadmin" style="background-color: #5cb85c;margin-left:5px">admin</span>
+<span class="sadmin" style="background-color: #f0ad4e;">superadmin</span>
+</div>
+<div id="div2" class="d2">
+<!--div><img src="1.png"></div-->
+<a href="#" onclick="funcNav()"><span class="fa"><i class="fa fa-bars"></i></span>MeetGreet</a>
+<a href="/templating"><span class="fa"><i class="fa fa-home"></i></span>Home</a>
+<a href="/templates"><span class="fa"><i class="fa fa-plus-square"></i></span>Add User</a>
+<a class="active" href="/userlist"><span class="fa"><i  id="act" class="fa fa-list-ul"></i></span>User List</a>
+<a href="/communities"><span class="fa"><i class="fa fa-list-alt"></i></span>Community List</a>
+<a href="#"  id="switchspan"><span class="fa"><i class="fa fa-toggle-off"></i></span>Switch As User</a>
+<a href="/tags"><span class="fa"><i class="fa fa-tags"></i></span>Tag Panel</a>
+<a href="/changepassword"><span class="fa"><i class="fa fa-lock"></i></span>Change Password</a>
+<a href="#" id="logoutspan"><span class="fa"><i class="fa fa-sign-out"></i></span>Logout</a>
+</div>
+<div class="mainpage">
+<% include partials/datatables %>
+</div>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+    <p><b>Are you sure you want to logout ?</b></p>
+		<div id="btndiv">
+		<button type="button" id="yesbtn" name="button">Yes</button>
+		<button type="button" id="nobtn" name="button">No</button>
+	</div>
+  </div>
+
+</div>
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <span class="close2">&times;</span>
+    <p><b>Are you sure you want to switch as a user ?</b></p>
+		<div id="btndiv">
+		<button type="button" id="syesbtn" class = "syesbtn" name="button">Yes</button>
+		<button type="button" id="snobtn" class= "snobtn" name="button">No</button>
+	</div>
+  </div>
+</div>
+
+<div id="myModal3" class="modal">
+  <div class="modal-content">
+    <p><b>Are you sure you want to deactivate ?</b></p>
+		<div id="btndiv">
+		<button type="button" id="byesbtn1" class = "syesbtn" name="button">Yes</button>
+		<button type="button" id="bnobtn1" class= "snobtn" name="button">No</button>
+	</div>
+  </div>
+</div>
+
+<div id="myModal4" class="modal">
+  <div class="modal-content">
+    <p><b>Are you sure you want to activate ?</b></p>
+		<div id="btndiv">
+		<button type="button" id="byesbtn2" class = "syesbtn" name="button">Yes</button>
+		<button type="button" id="bnobtn2" class= "snobtn" name="button">No</button>
+	</div>
+  </div>
+</div>
+
+
+<div id="update" class="update">
+
+  <form class="modal-content1 animate">
+
+<span onclick="document.getElementById('update').style.display='none'" class="close" >&times;</span>
+
+    <div class="container">
+<center>
+      <label><b>UPDATE</b></label>
+ <br>
+ <br>
+ <label>NAME </label>
+      <input id="uname" style="width:400px;height:30px;border-radius:5px;">
+ <br><br>
+       <label>Phone </label>
+      <input id="uphone" style="width:400px;height:30px;border-radius:5px;">
+ <br><br>
+
+ <label>City</label>
+      <input id="ucity" style="width:400px;height:30px;border-radius:5px;">
+ <br><br>
+
+ <label>Status</label>
+      <input id="ustatus" style="width:400px;height:30px;border-radius:5px;">
+ <br><br>
+
+
+
+ <label>Role:</label><br>
+
+                <select data-style="btn-info" name="roleoptions" id="urole" class="form-control"style="font-size:20px;width:500px;border-radius:5px;">
+                    <optgroup label="Select User Role">
+                      <option value="user">User</option>
+                        <option value="commuity manager">Community Builder</option>
+                      <option value="admin">Admin</option>
+                    </optgroup>
+                </select>
+
+              <br><br>
+
+      <button  id="uclick" style="background-color:red;width:100px;height:50px;">Update</button>
+ <br>
+ <br>
+      </center>
+    </div>
+  </form>
+</div>
+
+
+
+
+ <div id="mail" class="mail">
+
+  <form class="modal-content1 animate">
+
+<span onclick="document.getElementById('mail').style.display='none'" class="close" >&times;</span>
+
+    <div class="container">
+<center>
+      <label><b>TO:</b></label>
+ <br>
+ <input id="to" style="width:400px;height:30px;border-radius:5px;border:1">
+ <br>
+ <label><b>Subject<b></label>
+ <br>
+      <input id="subject" style="width:400px;height:30px;border-radius:5px;border:1;">
+ <br>
+
+
+<label>Write Mail</label>
+<!-- <input id="write" style="width:400px;height:200px;border-radius:5px;border:1;> -->
+   <div id="editor" style="width:400px;height:200px;border-radius:5px;border:1;"  ></div>
+
+
+      <button  id="send" style="background-color:red;width:100px;height:50px;">Send</button>
+ <br>
+ <br>
+      </center>
+    </div>
+  </form>
+</div>
+
+</body>
+<script>
+var quill = new Quill('#editor' , {
+	theme : 'snow'
+});
+function funcNav()
+{
+	var div2=document.getElementById('div2');
+	var abc1 = document.getElementsByClassName('mainpage');
+	if(div2.style.width=="250px")
+	 {
+			abc1[0].removeAttribute("id" , "mainpage");
+			div2.style.width="50px";
+		}
+	else
+	{
+		abc1[0].setAttribute("id" , "mainpage");
+		div2.style.width="250px";
+	}
+}
+var yesbtn = document.getElementById('yesbtn');
+yesbtn.addEventListener("click" , function(abc)
+{
+window.location.href="http://localhost:8000/linkedin";
+})
+var nobtn = document.getElementById('nobtn')
+nobtn.addEventListener("click" , function(abc)
+{
+	  var modal10 = document.getElementById('myModal');
+		modal10.style.display = "none";
+})
+var modal20 = document.getElementById('myModal2');
+var span1 = document.getElementsByClassName("close2")[0];
+span1.onclick = function() {
+modal20.style.display = "none";
+}
+var snobtn = document.getElementById('snobtn')
+snobtn.addEventListener("click" , function(abc)
+{
+	  var modal20 = document.getElementById('myModal2');
+		modal20.style.display = "none";
+})
+var syesbtn = document.getElementById('syesbtn');
+syesbtn.addEventListener("click" , function(abc)
+{
+window.location.href="http://localhost:8000/ASUdetails";
+})
+var switchuser = document.getElementById('switchspan');
+switchuser.addEventListener("click" , function(abc)
+{
+  var modal = document.getElementById('myModal2');
+  var span = document.getElementsByClassName("close")[0];
+  modal.style.display = "block";
+  span.onclick = function()
+{
+  modal.style.display = "none";
+}
+})
+</script>
+</html>
