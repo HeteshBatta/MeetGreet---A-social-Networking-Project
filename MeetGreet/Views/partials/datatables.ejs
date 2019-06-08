@@ -1,0 +1,42 @@
+<div id="biguldiv">
+  <div id="uldiv">
+    User List
+  </div>
+  <button onclick="refresh()" id="refreshbtn" style="float: right;background-color: #2D312C;color: #fff"> <i class ="fa fa-refresh"> </i>
+    <span class="glyphicon glyphicon-refresh"></span> Refresh
+  </button>
+  <div id="userdivbig">
+           <div class="userdiv">
+             <select class="dd" id="status" name="status">
+                 <option name="all" value="all">All</option>
+                 <option name="pending" value="pending">Pending</option>
+                 <option name="confirmed" value="confirmed">Confirmed</option>
+             </select>
+          </div>
+  </div>
+  <div id="userdivbig1">
+           <div class="userdiv">
+             <select class="dd" id="status1" name="status1">
+                 <option class="c1" name="all" value="all">All</option>
+                 <option class="c1" name="pending" value="Admin">Admin</option>
+                 <option class="c1" name="confirmed" value="User">Users</option>
+                 <option class="c1" name="confirmed" value="Community Builder">Community Builder</option>
+             </select>
+          </div>
+  </div>
+</div>
+<table id="example" class="display" style="width:100%" border="1px" bordercolor="#ddd">
+      <thead>
+          <tr>
+              <th id="username">Username/Email</th>
+              <th>Phone</th>
+              <th>City</th>
+              <th>Status</th>
+              <th>Role</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody id="tbody">
+          <script src="datatables.js">
+          </script>
+      </tbody>
