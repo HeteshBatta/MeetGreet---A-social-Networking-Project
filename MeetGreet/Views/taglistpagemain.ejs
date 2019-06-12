@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<title>MeetGreet</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style media="screen">
+body{
+	margin: 0;
+	padding: 0;
+	line-height: 1.42857143;
+	background-color: #F1F1F1;
+}
+#dbtn
+{
+	/* background-color: black; */
+}
+#userdivbig
+{
+	margin-right : -195px;
+	width : 50px;
+	float : right;
+}
+#userdivbig1
+{
+	margin-right : -347px;
+	width : 0px;
+	float : right;
+}
+#status1
+{
+	color: white;
+    height: 42px;
+    width: 194px;
+    background-color: #2D312C;
+		box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    font-size: 17px;
+		border-radius: 5px;
+    padding-inline-start: 17px;
+}
+#status
+{
+	color: white;
+    height: 42px;
+    width: 168px;
+    background-color: #2D312C;
+		box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+		-o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    font-size: 17px;
+		border-radius: 5px;
+    padding-inline-start: 17px;
+}
+#example_wrapper
+{
+margin-top: 16px;
+}
+#biguldiv
+{
+margin-top: 7px;
+width: 1434px;
+height: 44px;
+margin-left: 4px;
+}
+#refreshbtn
+{
+	box-shadow: 0 0 10px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+	-o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+	border-radius: 5px;
+	height: 45px;
+	padding: 6px 17px;
+	font-size: 17px;
+	line-height: 1.42857143;
+	margin-right : 150px;
+}
+#uldiv
+{
+	background-color: #2D312C;
+color: white;
+width: 112px;
+box-shadow: 0 0 10px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+border-radius: 5px;
+height: 42px;
+padding: 6px 17px;
+font-size: 19px;
+line-height: 1.42857143;
+float: left;
+}
+.mouseovering
+{
+	font-size: 18px;
+	font-weight: bold;
+	color : #348db7;
+	background-color: #cceeef;
+}
+#div1
+{
+	position: fixed;
+	width : 100%;
+}
+.mainpage{
+	padding-top : 62px;
+	padding-left : 55px;
+}
+.d1{
+	overflow: visible;
+	background-color: #222D3C;
+	height: 60px;
+	width: auto;
+	display: block;
+    padding: 0px 15px;
+}
+.d1 a{
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding-left: 20px;
+	padding-right: 50px;
+	text-decoration: none;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+.d1 span{
+	color: white;
+}
+.d1 div{
+	box-sizing: border-box;
+}
+.d2{
+	height: 100%;
+	width: 50px;;
+	position: fixed;
+	z-index: 1;
+	top: 60px;
+	left: 0;
+	background-color: #000000;
+	overflow-x: hidden;
+	transition: 0.5s;
+}
+
+.d2 a{
+	display: block;
+	padding: 11px 4px 11px 15px;
+	text-decoration: none;
+	color: #999999;
+	transition: 0.1s;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 15px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.fa{
+	font-size: 21px;
+	padding-right: 10px;
+}
+.d2 a:hover{
+	color : #fff;
+	background-color: #111;
+	border-left : 2px solid;
+	border-left-color: red;
+}
+.active{
+	background-color: #337AB7;
+}
+.d2 img{
+	width: 60px;
+	height: 60px;
+}
+#act{
+	color: white;
+}
+.sadmin{
+	float: right;
+	padding: .2em .6em .3em;
+	font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+	border-radius: 4px;
+}
+#mainpage{
+  /* padding-top : 0px; */
+ padding-left : 254px;
+}
+img{
+	cursor: pointer;
+    width: 40px;
+    margin-left: 30px;
+    margin-right: 10px;
+	margin-top: 10px;
+    float: right;
+    border-radius: 50%;
+}
+
+.allSides
+{
+	box-shadow: 0 0 30px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0 0 30px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 0 0 30px rgba(0,0,0,0.6);
+	-o-box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+.main
+{
+	width:50%;
+	border-color: black;
+	height:20px;
+	height: 95vh;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	display: flex;
+	margin-top: 15px;
+	margin-left:300px;
+}
+#boxes
+{
+		width:1000px;
+}
+#image
+{
+
+	height:120px;
+	width:125px;
+	border:1px black;
+	background:white;
+	color:black;
+	overflow: visible;
+
+}
+table {
+	border-spacing: 5px;
+}
+th, td {
+	padding: 30px;
+	spacing: 20px;
+	text-align:center;
+}
+.textbox
+ {
+		height:80px;
+		width:250px;
+		border:1px grey;
+		background:white;
+		color:black;
+		overflow: visible;
+
+ }
+ .head
+ {
+
+		 background-color: lightgray;
+		 width:100%;
+		 text-align: center;
+		 height:40px;
+		 font-size: 25px;
+		 width:250px;
+ }
+ .content
+ {
+
+		 background-color: white;
+		 width:100%;
+		 text-align: center;
+		 height:40px;
+		 font-size: 20px;
+		 width:250px;
+		 position:absolute;
+ }
+ .modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   padding-top: 100px; /* Location of the box */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+ }
+ /* Modal Content */
+ .modal-content {
+   background-color: #fefefe;
+   margin: auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 50%;
+ 	 height : 150px;
+ }
+
+ /* The Close Button */
+ .close {
+ 	 padding-left: 617px;
+   color: #aaaaaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+ }
+
+ .close:hover,
+ .close:focus {
+   color: #000;
+   text-decoration: none;
+   cursor: pointer;
+ }
+ #btndiv
+ {
+  width : 223px;
+ }
+
+ #yesbtn
+ {
+  width : 96px;
+  height: 45px;
+  float : left;
+  background-color: #222D3C; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid #222D3C;
+ }
+ #yesbtn:hover
+ {
+ 	background-color: #222D3C;
+ 	color: white;
+ }
+ #nobtn
+ {
+  width : 96px;
+  height : 45px;
+  float : right;
+  background-color: #222D3C; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid #222D3C;
+ }
+ #nobtn:hover
+ {
+ 	background-color: #222D3C;
+ 	color: white;
+ }
+ #syesbtn
+ {
+  width : 96px;
+  height: 45px;
+  float : left;
+  background-color: #222D3C; /* Green */
+  border: none;
+  color: #5CB85C;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background-color: white;
+  cursor: pointer;
+  color: black;
+  border: 2px solid #5CB85C;
+ }
+ #syesbtn:hover
+ {
+ 	background-color: #5CB85C;
+ 	color: white;
+ }
+ #snobtn
+ {
+  width : 96px;
+  height : 45px;
+  float : right;
+  background-color: #222D3C; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid #D9534F;
+ }
+ #snobtn:hover
+ {
+ 	background-color: #D9534F;
+ 	color: white;
+ }
+
+ .close2 {
+   color: #aaaaaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+ }
+
+ .close2:hover,
+ .close2:focus {
+   color: #000;
+   text-decoration: none;
+   cursor: pointer;
+ }
+</style>
+</head>
+<body>
+<div id="div1" class="d1">
+<br>
+<a href="#">MeetGreet</a>
+<span style="cursor:pointer;" onclick="funcNav()">&#9776;</span>
+
+<span class="sadmin" style="background-color: #5cb85c;margin-left:5px">admin</span>
+<span class="sadmin" style="background-color: #f0ad4e;">superadmin</span>
+</div>
+<div id="div2" class="d2">
+<!-- <img src="logo.png"> -->
+<a href="#" onclick="funcNav()"><span class="fa"><i class="fa fa-bars"></i></span>MeetGreet</a>
+<a href="/templating"><span class="fa"><i class="fa fa-home"></i></span>Home</a>
+<a href="/templates"><span class="fa"><i class="fa fa-plus-square"></i></span>Add User</a>
+<a href="/userlist"><span class="fa"><i class="fa fa-list-ul"></i></span>User List</a>
+<a href="/communities"><span class="fa"><i class="fa fa-list-alt"></i></span>Community List</a>
+<a href="#"  id="switchspan"><span class="fa"><i class="fa fa-toggle-off"></i></span>Switch As User</a>
+<a class="active" href="/tags"><span class="fa"><i id="act" class="fa fa-tags"></i></span>Tag Panel</a>
+<a href="/changepassword"><span class="fa"><i class="fa fa-lock"></i></span>Change Password</a>
+<a href="#"  id="logoutspan"><span class="fa"><i class="fa fa-sign-out"></i></span>Logout</a>
+</div>
+<div class="mainpage">
+<% include partials/taglistpagemain2 %>
+</div>
+<div id="myModal1" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p><b>Are you sure you want to logout ?</b></p>
+		<div id="btndiv">
+		<button type="button" id="yesbtn" name="button">Yes</button>
+		<button type="button" id="nobtn" name="button">No</button>
+	</div>
+  </div>
+
+</div>
+<div id="myModal2" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close2">&times;</span>
+    <p><b>Are you sure you want to switch as a user ?</b></p>
+		<div id="btndiv">
+		<button type="button" id="syesbtn" name="button">Yes</button>
+		<button type="button" id="snobtn" name="button">No</button>
+	</div>
+  </div>
+
+</div>
+</body>
+<script>
+function funcNav()
+{
+	var div2=document.getElementById('div2');
+	var abc1 = document.getElementsByClassName('mainpage');
+	if(div2.style.width=="250px")
+	 {
+			abc1[0].removeAttribute("id" , "mainpage");
+			div2.style.width="50px";
+		}
+	else
+	{
+		abc1[0].setAttribute("id" , "mainpage");
+		div2.style.width="250px";
+	}
+}
+var yesbtn = document.getElementById('yesbtn');
+yesbtn.addEventListener("click" , function(abc)
+{
+window.location.href="http://localhost:8000/linkedin";
+})
+var nobtn = document.getElementById('nobtn')
+var modal10 = document.getElementById('myModal1');
+nobtn.addEventListener("click" , function(abc)
+{
+	modal10.style.display = "none";
+})
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+modal10.style.display = "none";
+}
+function refresh()
+{
+		window.location.reload(true);
+}
+var modal20 = document.getElementById('myModal2');
+var span1 = document.getElementsByClassName("close2")[0];
+span1.onclick = function() {
+modal20.style.display = "none";
+}
+var snobtn = document.getElementById('snobtn')
+snobtn.addEventListener("click" , function(abc)
+{
+	  var modal20 = document.getElementById('myModal2');
+		modal20.style.display = "none";
+})
+var syesbtn = document.getElementById('syesbtn');
+syesbtn.addEventListener("click" , function(abc)
+{
+window.location.href="http://localhost:8000/ASUdetails";
+})
+var switchuser = document.getElementById('switchspan');
+switchuser.addEventListener("click" , function(abc)
+{
+  var modal = document.getElementById('myModal2');
+  var span = document.getElementsByClassName("close")[0];
+  modal.style.display = "block";
+  span.onclick = function()
+{
+  modal.style.display = "none";
+}
+})
+</script>
+</html>
