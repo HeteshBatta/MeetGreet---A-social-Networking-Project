@@ -1,0 +1,90 @@
+<div class="community-header-top" style="height:50px;padding-top:6px;" id="topbar">
+<div class="col-sm-12 community-sub-head">
+    <a class="btn community-head-btn" href="http://localhost:8000/communitypage" id="upbtn1">
+      <i class="fa fa-users"></i>
+    </a>
+    <a class="btn community-head-btn" style="margin-left:10px" href="http://localhost:8000/Allcommunity" id="upbtn2">
+      <i class="fa fa-search"></i>
+    </a>
+</div>
+</div>
+<div class="align-center-all">
+  <div class="container">
+    <div class="form-horizontal col-sm-6 col-md-6 col-lg-6">
+        <h3 class="page-header" style="color:#707070">Create Community</h3>
+
+            <div class="form-group">
+                <input class="form-control" type="text" required="" id="commname" name="communityName" placeholder="Name" maxlength="70" required>
+            </div>
+            <div class="form-group">
+                    <label style="color:#707070">Description</label>
+                    <div id="editor" style="width:556px;height:250px;border-radius:5px;border:1;background-color:white"  ></div>
+                    <!-- <textarea class="form-control" rows='10' id='description' name="communityDescription" style="overflow:hidden" required></textarea> -->
+            </div>
+            <div class="form-group ">
+                <label style="color:#707070">Rule :</label>
+                <input class="radio radio-inline"  type="radio"  value="D" name="communityMembershipRule" id="radiobtn"> Direct
+                <input class="radio radio-inline" type="radio" value="P"  name="communityMembershipRule"> Permission
+            </div>
+            <div class="form-group" style="display:none;">
+                <input class="form-control" id="file"  name="communityImage" type="file" />
+            </div>
+
+            <!-- <div class="form-group">
+              <div class="col-xs-4 col-sm-3">
+                <span class="btn btn-warning" onclick="$('#file').click()">Upload Image</span>
+              </div>
+              <div class="col-xs-8 col-sm-9" style="overflow: scroll;white-space: nowrap;">
+                <p id="filename" style="font-size:18px;font-weight:bold;color:#707070"></p>
+              </div>
+            </div> -->
+            <form class="image-container" action='/upload1' method="post" enctype="multipart/form-data" id="profilepicform">
+              <div class="form-group">
+                <div class="col-xs-4 col-sm-3">
+                  <input type="file" class="btn btn-warning" value="Upload Photo" name="communitypic">
+                  <input type="submit" id="confirmbtn" class="btn btn-warning" value="Submit" style="display:none">
+                </div>
+                </div>
+            </form>
+            <div class="form-group" style="display:none">
+              <div class="col-xs-1 col-sm-1">
+                  <input type="checkbox" class="checkbox-custom" style="outline: none;" id="check" onchange="appendData()" />
+              </div>
+              <div class="col-xs-8 col-sm-9" style="font-weight:bold;margin-top:5px;color:#707070">
+                  Local Community
+              </div>
+            </div>
+
+            <div class="form-group" id="dynamic">
+
+            </div>
+            <div class="form-group">
+                    <input class="form-control btn btn-primary" id="createcomm" type="submit" value="Create Community" >
+            </div>
+      </div>
+    </div>
+</div>
+<script>
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  var quill = new Quill('#editor' , {
+  	theme : 'snow'
+  });
+var commname = document.getElementById('commname');
+var create = document.getElementById('createcomm');
+var editor = document.getElementById('editor');
+var radiobtn = document.getElementById('radiobtn')
+
+create.addEventListener("click" , function(Abc)
+{var rule =radiobtn.checked==true ? 'Direct':'Permission';
+console.log(rule);
+  var req = new XMLHttpRequest();
+  req.addEventListener("load" , function(abc)
+  {
+    document.getElementById('confirmbtn').click();
+  })
+  req.open('POST', '/addcomm');
+  req.setRequestHeader("Content-Type" , "application/json");
+  req.send(JSON.stringify({'comm' : commname.value , 'description' : quill.container.firstChild.innerHTML , 'rule' : rule , 'createdate' : date}));
+})
+</script>
